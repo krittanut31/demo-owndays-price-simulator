@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { CirclePlus } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { eyeglassLensGroups } from "@/data/eyeglassLens";
 import { eyeglassLens2Groups, noLens2Option } from "@/data/eyeglassLens2";
 import type { OnFilterChange } from "@/types/pricing";
-import { LensModal, Plus, cardCell, type LensItem } from "./lensShared";
+import { LensIcon, LensModal, Plus, cardCell, type LensItem } from "./lensShared";
 
 const allLens1 = eyeglassLensGroups.flatMap((g) => g.options);
 
@@ -19,6 +18,7 @@ const lens1Sections = eyeglassLensGroups.map((g) => ({
   id: g.id,
   title: g.title,
   items: g.options,
+  note: g.note,
 }));
 const lens2Sections = [
   { id: "none", title: "", items: [noLens2Option] },
@@ -27,12 +27,14 @@ const lens2Sections = [
 
 function OptionCard({
   title,
+  number,
   badge,
   badgeClass,
   item,
   onSelect,
 }: {
   title: string;
+  number: number;
   badge: string;
   badgeClass: string;
   item: LensItem;
@@ -40,30 +42,36 @@ function OptionCard({
 }) {
   return (
     <Card className={cardCell}>
-      <CardContent className="flex h-full flex-col gap-5 p-8">
-        <div className="flex items-center gap-3 text-xl sm:text-2xl font-bold text-black">
-          <CirclePlus className="size-9" />
+      <CardContent className="flex h-full flex-col gap-5 p-4 justify-between">
+        <div className="flex items-center gap-3 text-xl leading-10.5 font-bold text-black">
+          <LensIcon />
           {title}
+          <span
+            aria-label={String(number)}
+            className="flex size-5 shrink-0 items-center justify-center text-sm rounded-full border-2 border-black leading-none md:size-6.5 md:text-sm"
+          >
+            {number}
+          </span>
         </div>
         <div className="flex items-center justify-between">
           <span
-            className={`rounded-full px-5 py-2 text-base sm:text-lg font-bold text-white ${badgeClass}`}
+            className={`rounded-full px-4  text-base leading-8 font-bold text-white ${badgeClass}`}
           >
             {badge}
           </span>
-          <span className="text-2xl sm:text-4xl font-extrabold text-black">
+          <span className="text-[32px] font-extrabold text-black">
             +¥{item.price.toLocaleString("th-TH")}
           </span>
         </div>
-        <div className="border-t border-dashed border-zinc-400 pt-4 text-zinc-500">
+        <div className="border-t border-dashed border-zinc-400 pt-5 text-zinc-500">
           {item.name}
         </div>
         <Button
           size="lg"
           onClick={onSelect}
-          className="mt-auto h-14 bg-zinc-700 text-base sm:text-lg text-white hover:bg-zinc-800"
+          className="h-12.5 bg-[#555] text-base text-white hover:bg-[#444] mt-0"
         >
-          เลือกตัวเลือก
+          オプションを選ぶ
         </Button>
       </CardContent>
     </Card>
@@ -106,24 +114,26 @@ export default function GlassLensCards({
     <>
       <Plus />
       <OptionCard
-        title="ตัวเลือกเลนส์ 1"
-        badge="จำเป็น"
-        badgeClass="bg-red-700"
+        title="レンズオプション"
+        number={1}
+        badge="必須"
+        badgeClass="bg-[#bf0000]"
         item={lens1}
         onSelect={() => openModal("lens1")}
       />
       <Plus />
       <OptionCard
-        title="ตัวเลือกเลนส์ 2"
-        badge="อื่นๆ"
-        badgeClass="bg-zinc-500"
+        title="レンズオプション"
+        number={2}
+        badge="任意"
+        badgeClass="bg-[#7c7c7c]"
         item={lens2}
         onSelect={() => openModal("lens2")}
       />
 
       <LensModal
         open={modal !== null}
-        title={modal === "lens2" ? "เพิ่มตัวเลือก" : "การเลือกเลนส์"}
+        title={modal === "lens2" ? "オプションを追加" : "レンズを選ぶ"}
         sections={modal === "lens2" ? lens2Sections : lens1Sections}
         pending={pending}
         onPick={setPending}

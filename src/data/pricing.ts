@@ -1,9 +1,9 @@
 export type Lens = { id: string; name: string; price: number };
 export type Lens2 = Lens & { compatibleWith: string[] }; // ids of Lens 1
 
-// แว่นสายตา: 8,000 – 22,000 ขยับทีละ 1,000
+// แว่นสายตา: 7,000 – 22,000 ขยับทีละ 1,000
 export const eyeglassPriceRanges: number[] = Array.from(
-  { length: 15 },
+  { length: 16 },
   (_, i) => 7000 + i * 1000,
 );
 

@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     },
   },
   output: "export",
-  basePath: "/demo-owndays-price-simulator",
+  basePath: process.env.NODE_ENV === "production" ? "/demo-owndays-price-simulator" : "",
   images: { unoptimized: true },
 };
 

@@ -7,23 +7,22 @@ export type optionFilter = {
 export type GlassType = "glass" | "sunGlass"
 
 
-export type SunglassLensCategoryId = "color" | "functional"
+export type SunglassLensCategoryId = "color" | "combo" | "functional"
 
 export type SunglassLensOption = {
     id: string
     categoryId: SunglassLensCategoryId
     name: string
     price: number
-}
-
-export type SunglassLensCombo = {
-    id: string
-    name: string
-    price: number
+    description?: string
+    icon?: string
+    detailUrl?: string
+    // เลนส์แบบผสม (2 ไอคอนคั่นด้วย +)
+    icons?: [string, string]
 }
 
 export type SunglassLensGroup = {
-    id: string
+    id: SunglassLensCategoryId
     title: string
     options: SunglassLensOption[]
 }
@@ -34,7 +33,10 @@ export type EyeglassLensGroupId = "standard" | "double" | "functional" | "color"
 export type EyeglassLensOption = {
     id: string
     name: string
+    description: string
     price: number
+    icon: string
+    detailUrl: string
     // เลนส์ที่เลือกเป็นตัวเลือกที่ 2 ได้เมื่อเลือกตัวนี้เป็นตัวเลือกที่ 1
     // ["all"] = ทุกตัว, ["none"] = ใช้ร่วมกับตัวอื่นไม่ได้
     compatibleCategories: string[]
@@ -45,6 +47,7 @@ export type EyeglassLensGroup = {
     id: EyeglassLensGroupId
     title: string
     options: EyeglassLensOption[]
+    note?: string
 }
 
 
@@ -57,6 +60,11 @@ export type EyeglassLens2Option = {
     categoryId: EyeglassLens2CategoryId
     name: string
     price: number
+    description?: string
+    icon?: string
+    detailUrl?: string
+    // เลนส์แบบผสม (2 ไอคอนคั่นด้วย +)
+    icons?: [string, string]
 }
 
 export type EyeglassLens2Group = {

@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { CirclePlus } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { sunglassLensCombos, sunglassLensGroups } from "@/data/sunglassLens";
+import { sunglassLensGroups } from "@/data/sunglassLens";
 import type { OnFilterChange } from "@/types/pricing";
-import { LensModal, Plus, cardCell, type LensItem } from "./lensShared";
+import { LensIcon, LensModal, Plus, cardCell, type LensItem } from "./lensShared";
 
-const sections = [
-  ...sunglassLensGroups.map((g) => ({ id: g.id, title: g.title, items: g.options })),
-  { id: "combo", title: "การผสมผสาน", items: sunglassLensCombos },
-];
+const sections = sunglassLensGroups.map((g) => ({
+  id: g.id,
+  title: g.title,
+  items: g.options,
+}));
 
 export default function SunglassLensCards({
   onFilterChange,
@@ -46,12 +46,13 @@ export default function SunglassLensCards({
       <Plus />
       <Card className={`${cardCell} border-dashed shadow-none`}>
         <CardContent className="flex h-full flex-col items-center gap-5 p-8 text-center">
-          <p className="text-lg sm:text-xl text-zinc-700">โปรดเลือก</p>
-          <div className="flex w-full max-w-xs flex-col gap-4">
+          <p className="text-base font-medium text-[#535353]">選択してください
+</p>
+          <div className="flex w-full max-w-xs flex-col gap-4 items-center">
             {(
               [
-                ["start", "เลนส์เริ่มต้น"],
-                ["change", "การเปลี่ยนเลนส์"],
+                ["start", "デフォルトレンズ"],
+                ["change", "レンズ交換"],
               ] as const
             ).map(([value, label]) => (
               <Button
@@ -59,9 +60,9 @@ export default function SunglassLensCards({
                 size="lg"
                 variant={lensMode === value ? "default" : "outline"}
                 onClick={() => changeLensMode(value)}
-                className={`h-14 text-base sm:text-lg font-bold ${
+                className={`w-full max-w-48.5 md:max-w-none h-10 md:h-12.5 text-sm font-bold ${
                   lensMode === value
-                    ? "bg-zinc-700 text-white hover:bg-zinc-800"
+                    ? "bg-[#555] text-white hover:bg-[#444]"
                     : "border-zinc-700 text-zinc-700"
                 }`}
               >
@@ -69,48 +70,48 @@ export default function SunglassLensCards({
               </Button>
             ))}
           </div>
-          <p className="text-zinc-400">
-            สำหรับเลนส์สายตาหรือต้องการเปลี่ยนสีเลนส์
+          <p className="text-[#a5a5a5] font-medium text-sm">
+            度付き、カラー変更の場合は
             <br />
-            โปรดเลือก &quot;เปลี่ยนเลนส์&quot;
+            レンズ交換を選択してください
           </p>
         </CardContent>
       </Card>
       <Plus />
       <Card className={cardCell}>
         {lensMode === "change" ? (
-          <CardContent className="flex h-full flex-col gap-4 p-8">
-            <div className="flex items-center justify-center gap-3 text-xl sm:text-2xl font-bold text-black">
-              <CirclePlus className="size-9" />
-              ตัวเลือกเลนส์
+          <CardContent className="flex h-full flex-col gap-4 p-5">
+            <div className="flex items-center justify-center gap-3 text-xl  font-bold text-black">
+              <LensIcon />
+              レンズオプション
             </div>
-            <div className="mt-4 text-center text-2xl sm:text-4xl font-extrabold text-black">
+            <div className="mt-4 text-center text-[28px] font-bold text-black">
               +¥{(selected?.price ?? 0).toLocaleString("th-TH")}
             </div>
-            <div className="border-t border-dashed border-zinc-300 pt-2 text-center text-zinc-400">
-              รวมค่าบริการล้างเลนส์ ¥4,400
+            <div className="text-sm border-t border-dashed border-zinc-300 pt-2 text-center text-[#a5a5a5] font-medium">
+              レンズ加工料金¥4,400を含む
             </div>
-            <div className="my-auto text-center text-zinc-700">
-              {selected?.name ?? "ยังไม่ได้เลือกเลนส์"}
+            <div className="my-auto text-center text-[#535353] font-medium text-sm">
+              {selected?.name ?? "カラーレンズ"}
             </div>
             <Button
               size="lg"
               onClick={openModal}
-              className="h-14 bg-zinc-700 text-base sm:text-lg text-white hover:bg-zinc-800"
+              className="h-10 md:h-12.5 bg-[#555] text-base md:text-lg text-white hover:bg-[#444]"
             >
-              เลือกตัวเลือก
+              オプションを選ぶ
             </Button>
           </CardContent>
         ) : (
           <CardContent className="flex h-full flex-col gap-4 p-8 align-center justify-center">
-            <p className="text-xl sm:text-2xl text-center">สีเริ่มต้น</p>
+            <p className="text-xl text-center font-bold">デフォルトカラー <br/> （度なし）</p>
           </CardContent>
         )}
       </Card>
 
       <LensModal
         open={open}
-        title="การเลือกเลนส์"
+        title="レンズを選ぶ"
         sections={sections}
         pending={pending}
         onPick={setPending}
