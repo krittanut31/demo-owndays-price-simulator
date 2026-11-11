@@ -80,12 +80,12 @@ export default function SunglassLensCards({
       <Plus />
       <Card className={cardCell}>
         {lensMode === "change" ? (
-          <CardContent className="flex h-full flex-col gap-4 p-5">
+          <CardContent className="flex h-full flex-col gap-2 p-5">
             <div className="flex items-center justify-center gap-3 text-xl  font-bold text-black">
               <LensIcon />
               レンズオプション
             </div>
-            <div className="mt-4 text-center text-[28px] font-bold text-black">
+            <div className="text-center text-[28px] font-bold text-black">
               +¥{(selected?.price ?? 0).toLocaleString("th-TH")}
             </div>
             <div className="text-sm border-t border-dashed border-zinc-300 pt-2 text-center text-[#a5a5a5] font-medium">
