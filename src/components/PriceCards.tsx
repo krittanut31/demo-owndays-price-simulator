@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { eyeglassPriceRanges, sunglassPriceRanges } from "@/data/pricing";
 import type { GlassType, OnFilterChange, optionFilter } from "@/types/pricing";
+import { cardCell } from "./lensShared";
 import GlassLensCards from "./GlassLensCards";
 import SunglassLensCards from "./SunglassLensCards";
 
@@ -30,20 +31,20 @@ export default function PriceCards({
 
   return (
     <div className="flex w-full max-w-6xl flex-col items-stretch gap-4">
-      <div className="flex flex-col gap-4 md:flex-row h-90">
-        <Card className="flex-1">
+      <div className="flex flex-col gap-4 md:flex-row md:flex-wrap md:justify-center lg:h-90 lg:flex-nowrap">
+        <Card className={cardCell}>
           <CardContent className="flex h-full flex-col gap-5 p-8">
-            <div className="flex items-center gap-3 text-2xl font-bold text-black">
+            <div className="flex items-center gap-3 text-xl sm:text-2xl font-bold text-black">
               <Glasses className="size-9" />
               กรอบ
             </div>
-            <div className="my-auto text-center text-5xl font-extrabold text-black">
+            <div className="my-auto text-center text-3xl sm:text-5xl font-extrabold text-black">
               {filter.price.toLocaleString("th-TH")} เยน
             </div>
             <Button
               size="lg"
               onClick={() => setPriceOpen(true)}
-              className="h-14 bg-zinc-700 text-lg text-white hover:bg-zinc-800"
+              className="h-14 bg-zinc-700 text-base sm:text-lg text-white hover:bg-zinc-800"
             >
               เลือกช่วงราคา
             </Button>
@@ -55,7 +56,7 @@ export default function PriceCards({
           <SunglassLensCards onFilterChange={onFilterChange} />
         )}
       </div>
-      <span className="self-center text-4xl text-zinc-500">=</span>
+      <span className="self-center text-2xl sm:text-4xl text-zinc-500">=</span>
 
       <Dialog open={priceOpen} onOpenChange={setPriceOpen}>
         <DialogContent>

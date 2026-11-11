@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { eyeglassLensGroups } from "@/data/eyeglassLens";
 import { eyeglassLens2Groups, noLens2Option } from "@/data/eyeglassLens2";
 import type { OnFilterChange } from "@/types/pricing";
-import { LensModal, Plus, type LensItem } from "./lensShared";
+import { LensModal, Plus, cardCell, type LensItem } from "./lensShared";
 
 const allLens1 = eyeglassLensGroups.flatMap((g) => g.options);
 
@@ -39,19 +39,19 @@ function OptionCard({
   onSelect: () => void;
 }) {
   return (
-    <Card className="flex-1">
+    <Card className={cardCell}>
       <CardContent className="flex h-full flex-col gap-5 p-8">
-        <div className="flex items-center gap-3 text-2xl font-bold text-black">
+        <div className="flex items-center gap-3 text-xl sm:text-2xl font-bold text-black">
           <CirclePlus className="size-9" />
           {title}
         </div>
         <div className="flex items-center justify-between">
           <span
-            className={`rounded-full px-5 py-2 text-lg font-bold text-white ${badgeClass}`}
+            className={`rounded-full px-5 py-2 text-base sm:text-lg font-bold text-white ${badgeClass}`}
           >
             {badge}
           </span>
-          <span className="text-4xl font-extrabold text-black">
+          <span className="text-2xl sm:text-4xl font-extrabold text-black">
             +{item.price.toLocaleString("th-TH")} เยน
           </span>
         </div>
@@ -61,7 +61,7 @@ function OptionCard({
         <Button
           size="lg"
           onClick={onSelect}
-          className="mt-auto h-14 bg-zinc-700 text-lg text-white hover:bg-zinc-800"
+          className="mt-auto h-14 bg-zinc-700 text-base sm:text-lg text-white hover:bg-zinc-800"
         >
           เลือกตัวเลือก
         </Button>

@@ -9,8 +9,12 @@ import {
 export type LensItem = { id: string; name: string; price: number };
 export type LensSectionData = { id: string; title: string; items: LensItem[] };
 
+// การ์ดบนแท็บเล็ต: 2 ใบต่อแถว (ใบที่ 3 ขึ้นแถวใหม่อยู่กลาง) / เดสก์ท็อป: แถวเดียวแบ่งเท่ากัน
+export const cardCell =
+  "flex-1 md:h-90 md:w-[calc(50%-2rem)] md:flex-none lg:h-auto lg:w-auto lg:flex-1";
+
 export function Plus() {
-  return <span className="self-center text-4xl text-zinc-400">+</span>;
+  return <span className="self-center text-2xl text-zinc-400 sm:text-4xl">+</span>;
 }
 
 function LensSection({

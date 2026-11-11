@@ -12,20 +12,20 @@ export default function TotalPrice({ filter }: { filter: optionFilter }) {
     <div className="w-full max-w-6xl rounded-3xl bg-zinc-100 px-6 py-10">
       <div className="mx-auto w-full max-w-md">
         <div className="flex items-baseline justify-between border-b border-dashed border-zinc-400 pb-3">
-          <span className="text-3xl font-extrabold text-black">ราคารวม</span>
-          <span className="text-4xl font-extrabold text-amber-700">
-            {yen(total)} <span className="text-2xl">เยน</span>
+          <span className="text-2xl sm:text-3xl font-extrabold text-black">ราคารวม</span>
+          <span className="text-2xl sm:text-4xl font-extrabold text-amber-700">
+            {yen(total)} <span className="text-xl sm:text-2xl">เยน</span>
           </span>
         </div>
 
         <dl className="mt-3 space-y-1 text-zinc-700">
           <div className="flex items-baseline justify-between">
             <dt>กรอบ</dt>
-            <dd className="text-xl font-bold">{yen(filter.price)} เยน</dd>
+            <dd className="text-lg sm:text-xl font-bold">{yen(filter.price)} เยน</dd>
           </div>
           <div className="flex items-baseline justify-between">
             <dt>ค่าธรรมเนียมเพิ่มเติม</dt>
-            <dd className="text-xl font-bold">+ {yen(extra)} เยน</dd>
+            <dd className="text-lg sm:text-xl font-bold">+ {yen(extra)} เยน</dd>
           </div>
         </dl>
 

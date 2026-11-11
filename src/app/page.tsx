@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <main className="flex w-full flex-1 flex-col items-center justify-start  bg-white p-12 gap-4">
-      <p className="text-center text-xl font-bold text-black ">
+      <p className="text-center text-lg sm:text-xl font-bold text-black ">
         Price Simulator
       </p>
 
@@ -38,10 +38,10 @@ export default function Home() {
         onValueChange={(v) => handleGlassTypeChange(v as GlassType)}
       > 
         <TabsList className="group-data-horizontal/tabs:h-14 p-1.5">
-          <TabsTrigger value="glass" className="px-8 py-2 text-lg">
+          <TabsTrigger value="glass" className="px-8 py-2 text-base sm:text-lg">
             แว่นสายตา
           </TabsTrigger>
-          <TabsTrigger value="sunGlass" className="px-8 py-2 text-lg">
+          <TabsTrigger value="sunGlass" className="px-8 py-2 text-base sm:text-lg">
             แว่นกันแดด
           </TabsTrigger>
         </TabsList>

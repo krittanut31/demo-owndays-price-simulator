@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { sunglassLensCombos, sunglassLensGroups } from "@/data/sunglassLens";
 import type { OnFilterChange } from "@/types/pricing";
-import { LensModal, Plus, type LensItem } from "./lensShared";
+import { LensModal, Plus, cardCell, type LensItem } from "./lensShared";
 
 const sections = [
   ...sunglassLensGroups.map((g) => ({ id: g.id, title: g.title, items: g.options })),
@@ -44,9 +44,9 @@ export default function SunglassLensCards({
   return (
     <>
       <Plus />
-      <Card className="flex-1 border-dashed shadow-none">
+      <Card className={`${cardCell} border-dashed shadow-none`}>
         <CardContent className="flex h-full flex-col items-center gap-5 p-8 text-center">
-          <p className="text-xl text-zinc-700">โปรดเลือก</p>
+          <p className="text-lg sm:text-xl text-zinc-700">โปรดเลือก</p>
           <div className="flex w-full max-w-xs flex-col gap-4">
             {(
               [
@@ -59,7 +59,7 @@ export default function SunglassLensCards({
                 size="lg"
                 variant={lensMode === value ? "default" : "outline"}
                 onClick={() => changeLensMode(value)}
-                className={`h-14 text-lg font-bold ${
+                className={`h-14 text-base sm:text-lg font-bold ${
                   lensMode === value
                     ? "bg-zinc-700 text-white hover:bg-zinc-800"
                     : "border-zinc-700 text-zinc-700"
@@ -77,14 +77,14 @@ export default function SunglassLensCards({
         </CardContent>
       </Card>
       <Plus />
-      <Card className="flex-1">
+      <Card className={cardCell}>
         {lensMode === "change" ? (
           <CardContent className="flex h-full flex-col gap-4 p-8">
-            <div className="flex items-center justify-center gap-3 text-2xl font-bold text-black">
+            <div className="flex items-center justify-center gap-3 text-xl sm:text-2xl font-bold text-black">
               <CirclePlus className="size-9" />
               ตัวเลือกเลนส์
             </div>
-            <div className="mt-4 text-center text-4xl font-extrabold text-black">
+            <div className="mt-4 text-center text-2xl sm:text-4xl font-extrabold text-black">
               +{(selected?.price ?? 0).toLocaleString("th-TH")} เยน
             </div>
             <div className="border-t border-dashed border-zinc-300 pt-2 text-center text-zinc-400">
@@ -96,14 +96,14 @@ export default function SunglassLensCards({
             <Button
               size="lg"
               onClick={openModal}
-              className="h-14 bg-zinc-700 text-lg text-white hover:bg-zinc-800"
+              className="h-14 bg-zinc-700 text-base sm:text-lg text-white hover:bg-zinc-800"
             >
               เลือกตัวเลือก
             </Button>
           </CardContent>
         ) : (
           <CardContent className="flex h-full flex-col gap-4 p-8 align-center justify-center">
-            <p className="text-2xl text-center">สีเริ่มต้น</p>
+            <p className="text-xl sm:text-2xl text-center">สีเริ่มต้น</p>
           </CardContent>
         )}
       </Card>
