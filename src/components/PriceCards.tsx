@@ -39,7 +39,7 @@ export default function PriceCards({
               กรอบ
             </div>
             <div className="my-auto text-center text-3xl sm:text-5xl font-extrabold text-black">
-              {filter.price.toLocaleString("th-TH")} เยน
+              ¥{filter.price.toLocaleString("th-TH")}
             </div>
             <Button
               size="lg"
@@ -73,7 +73,7 @@ export default function PriceCards({
                   setPriceOpen(false);
                 }}
               >
-                {p.toLocaleString("th-TH")} เยน
+                ¥{p.toLocaleString("th-TH")}
               </Button>
             ))}
           </div>

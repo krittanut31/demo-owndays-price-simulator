@@ -14,25 +14,25 @@ export default function TotalPrice({ filter }: { filter: optionFilter }) {
         <div className="flex items-baseline justify-between border-b border-dashed border-zinc-400 pb-3">
           <span className="text-2xl sm:text-3xl font-extrabold text-black">ราคารวม</span>
           <span className="text-2xl sm:text-4xl font-extrabold text-amber-700">
-            {yen(total)} <span className="text-xl sm:text-2xl">เยน</span>
+            ¥{yen(total)}
           </span>
         </div>
 
         <dl className="mt-3 space-y-1 text-zinc-700">
           <div className="flex items-baseline justify-between">
             <dt>กรอบ</dt>
-            <dd className="text-lg sm:text-xl font-bold">{yen(filter.price)} เยน</dd>
+            <dd className="text-lg sm:text-xl font-bold">¥{yen(filter.price)}</dd>
           </div>
           <div className="flex items-baseline justify-between">
             <dt>ค่าธรรมเนียมเพิ่มเติม</dt>
-            <dd className="text-lg sm:text-xl font-bold">+ {yen(extra)} เยน</dd>
+            <dd className="text-lg sm:text-xl font-bold">+ ¥{yen(extra)}</dd>
           </div>
         </dl>
 
         <div className="mt-8 space-y-1 text-center text-sm">
           <p className="font-medium text-amber-700">
-            จัดส่งฟรีทั่วประเทศญี่ปุ่นสำหรับคำสั่งซื้อที่มีมูลค่ามากกว่า 3,300
-            เยนในร้านค้าออนไลน์ของเรา
+            จัดส่งฟรีทั่วประเทศญี่ปุ่นสำหรับคำสั่งซื้อที่มีมูลค่ามากกว่า <br/>¥3,300
+            ในร้านค้าออนไลน์ของเรา
           </p>
           <p className="text-zinc-500">*ราคาสินค้าทั้งหมดรวมภาษีแล้ว</p>
         </div>

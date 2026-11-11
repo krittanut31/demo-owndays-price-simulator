@@ -4,7 +4,7 @@ import type {
 } from "@/types/pricing";
 
 // ตัวเลือก "อย่าเพิ่ม" (ราคา 0) ใช้ได้เสมอ
-export const noLens2Option = { id: "none", name: "อย่าเพิ่ม", price: 0 };
+export const noLens2Option = { id: "none", name: "ไม่เลือก", price: 0 };
 
 // ราคาหน่วยเยน
 export const eyeglassLens2Groups: EyeglassLens2Group[] = [

@@ -43,7 +43,7 @@ function LensSection({
         >
           <span>{item.name}</span>
           <span className="shrink-0 font-bold">
-            +{item.price.toLocaleString("th-TH")} เยน
+            +¥{item.price.toLocaleString("th-TH")}
           </span>
         </Button>
       ))}

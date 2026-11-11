@@ -16,7 +16,7 @@ export default function SunglassLensCards({
 }: {
   onFilterChange: OnFilterChange;
 }) {
-  const [lensMode, setLensMode] = useState<"start" | "change">("change");
+  const [lensMode, setLensMode] = useState<"start" | "change">("start");
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<LensItem | null>(null);
   const [pending, setPending] = useState<LensItem | null>(null);
@@ -85,10 +85,10 @@ export default function SunglassLensCards({
               ตัวเลือกเลนส์
             </div>
             <div className="mt-4 text-center text-2xl sm:text-4xl font-extrabold text-black">
-              +{(selected?.price ?? 0).toLocaleString("th-TH")} เยน
+              +¥{(selected?.price ?? 0).toLocaleString("th-TH")}
             </div>
             <div className="border-t border-dashed border-zinc-300 pt-2 text-center text-zinc-400">
-              รวมค่าบริการล้างเลนส์ 4,400 เยน
+              รวมค่าบริการล้างเลนส์ ¥4,400
             </div>
             <div className="my-auto text-center text-zinc-700">
               {selected?.name ?? "ยังไม่ได้เลือกเลนส์"}

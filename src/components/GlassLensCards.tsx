@@ -52,7 +52,7 @@ function OptionCard({
             {badge}
           </span>
           <span className="text-2xl sm:text-4xl font-extrabold text-black">
-            +{item.price.toLocaleString("th-TH")} เยน
+            +¥{item.price.toLocaleString("th-TH")}
           </span>
         </div>
         <div className="border-t border-dashed border-zinc-400 pt-4 text-zinc-500">
