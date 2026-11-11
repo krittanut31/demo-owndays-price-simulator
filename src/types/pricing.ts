@@ -64,3 +64,9 @@ export type EyeglassLens2Group = {
     title: string
     options: EyeglassLens2Option[]
 }
+
+
+export type OnFilterChange = <K extends keyof optionFilter>(
+    key: K,
+    value: optionFilter[K],
+) => void
