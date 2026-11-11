@@ -20,9 +20,16 @@ const lens1Sections = eyeglassLensGroups.map((g) => ({
   items: g.options,
   note: g.note,
 }));
-const lens2Sections = [
+// เลนส์ 2: ซ่อนตัวที่ใช้กับเลนส์ 1 ไม่ได้ และซ่อนหมวดที่ไม่เหลือตัวเลือก
+const getLens2Sections = (lens1Id: string) => [
   { id: "none", title: "", items: [noLens2Option] },
-  ...eyeglassLens2Groups.map((g) => ({ id: g.id, title: g.title, items: g.options })),
+  ...eyeglassLens2Groups
+    .map((g) => ({
+      id: g.id,
+      title: g.title,
+      items: g.options.filter((o) => canAdd(lens1Id, o.id)),
+    }))
+    .filter((g) => g.items.length > 0),
 ];
 
 function OptionCard({
@@ -134,16 +141,11 @@ export default function GlassLensCards({
       <LensModal
         open={modal !== null}
         title={modal === "lens2" ? "オプションを追加" : "レンズを選ぶ"}
-        sections={modal === "lens2" ? lens2Sections : lens1Sections}
+        sections={modal === "lens2" ? getLens2Sections(lens1.id) : lens1Sections}
         pending={pending}
         onPick={setPending}
         onConfirm={confirm}
         onClose={() => setModal(null)}
-        isDisabled={
-          modal === "lens2"
-            ? (item) => item.id !== noLens2Option.id && !canAdd(lens1.id, item.id)
-            : undefined
-        }
       />
     </>
   );

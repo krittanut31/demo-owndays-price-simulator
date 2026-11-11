@@ -1,7 +1,4 @@
-import type {
-  EyeglassLens2Group,
-  EyeglassLens2Option,
-} from "@/types/pricing";
+import type { EyeglassLens2Group } from "@/types/pricing";
 
 const icon = (name: string) =>
   `https://storage.owndays.com/images/services/price-simulator/lens/${name}-lens-icon.webp`;
@@ -113,6 +110,3 @@ export const eyeglassLens2Groups: EyeglassLens2Group[] = [
     ],
   },
 ];
-
-export const eyeglassLens2Options: EyeglassLens2Option[] =
-  eyeglassLens2Groups.flatMap((g) => g.options);

@@ -49,13 +49,11 @@ export function Plus() {
 
 export function OptionRow({
   selected,
-  disabled,
   onClick,
   className,
   children,
 }: {
   selected: boolean;
-  disabled?: boolean;
   onClick: () => void;
   className?: string;
   children: React.ReactNode;
@@ -64,10 +62,9 @@ export function OptionRow({
     <button
       type="button"
       aria-pressed={selected}
-      disabled={disabled}
       onClick={onClick}
       className={cn(
-        "flex w-full items-center justify-center rounded-lg border px-4 py-5 font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-30",
+        "flex w-full items-center justify-center rounded-lg border px-4 py-5 font-bold transition-colors",
         selected ? "border-black" : "border-zinc-200 hover:border-zinc-400",
         className,
       )}
@@ -80,12 +77,10 @@ export function OptionRow({
 function RichRow({
   item,
   selected,
-  disabled,
   onClick,
 }: {
   item: LensItem;
   selected: boolean;
-  disabled?: boolean;
   onClick: () => void;
 }) {
   return (
@@ -93,15 +88,13 @@ function RichRow({
       className={cn(
         "relative rounded-lg border transition-colors",
         selected ? "border-black" : "border-zinc-200 hover:border-zinc-400",
-        disabled && "opacity-30",
       )}
     >
       <button
         type="button"
         aria-pressed={selected}
-        disabled={disabled}
         onClick={onClick}
-        className="flex w-full gap-5 p-6 text-left disabled:cursor-not-allowed"
+        className="flex w-full gap-5 p-6 text-left"
       >
         {item.icon && (
           <Image src={item.icon} alt="" width={40} height={40} className="size-10 shrink-0" unoptimized />
@@ -190,7 +183,6 @@ export function LensModal({
   onPick,
   onConfirm,
   onClose,
-  isDisabled,
 }: {
   open: boolean;
   title: string;
@@ -199,7 +191,6 @@ export function LensModal({
   onPick: (item: LensItem) => void;
   onConfirm: () => void;
   onClose: () => void;
-  isDisabled?: (item: LensItem) => boolean;
 }) {
   return (
     <PickModal
@@ -218,14 +209,12 @@ export function LensModal({
                 key={item.id}
                 item={item}
                 selected={pending?.id === item.id}
-                disabled={isDisabled?.(item)}
                 onClick={() => onPick(item)}
               />
             ) : (
             <OptionRow
               key={item.id}
               selected={pending?.id === item.id}
-              disabled={isDisabled?.(item)}
               onClick={() => onPick(item)}
               className="justify-between gap-4 text-left"
             >
